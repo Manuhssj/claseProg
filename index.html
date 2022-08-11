@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas></title>
+</head>
+<style type="text/css">
+    canvas{
+        background-color: rgb(248, 223, 223);
+    }
+</style>
+<body>
+    
+    <canvas id="myCanvas" width="500 " height="500">
+        Hola tu navegador no funciona
+    </canvas>
+
+    <script type="text/javascript">
+        var cv = document.getElementById('myCanvas');
+        var ctx = cv.getContext('2d');
+
+
+
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect(10 , 10, 55, 50);
+
+        ctx.fillStyle = "rgb(0,0,200,0.5)";
+        ctx.fillRect(50 , 50, 55 , 50);
+
+        ctx.fillStyle = "rgb(200,22,5,0.5)";
+        ctx.fillRect(90 , 90, 55 , 50);
+
+
+        // ctx.moveTo(0,0); // Colocar un punto inicial
+        // ctx.lineTo(200,200); //mover el lapiz al punto
+        // ctx.stroke(); //dibujar el contorno
+
+
+        
+        ctx.moveTo(0,0); //colocar en un punto inicial
+        ctx.lineTo(200,200); //mover el lápiz al punto
+        ctx.stroke();//dibujar el contorno
+
+        
+        ctx.fillStyle = "rgba(0,0,4,0.5)";
+        ctx.moveTo(120,175);
+        ctx.lineTo(25,35);
+        ctx.lineTo(65,178);
+        ctx.lineTo(120,175);
+
+        
+        // ctx.lineTo(200,150);
+        ctx.strokeStyle = 'blue';
+        // ctx.stroke();
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(200,50,25,0,2*Math.PI);
+        ctx.strokeStyle = 'red'
+        ctx.stroke();
+        
+        
+        ctx.beginPath();
+        ctx.arc(270,50,25,0,2*Math.PI);
+        ctx.strokeStyle = 'red'
+        ctx.stroke();
+        ctx.fillStyle='red'
+        ctx.fill()
+       
+
+
+        ctx.stroke();
+        
+    </script>
+</body>
+</html>
