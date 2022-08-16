@@ -95,37 +95,28 @@
 
         ctx.drawImage(image, 33, 60, 500,500);
         
-        var r = 255;
-        var g = 255;
-        var b = 255;
         var a = .5
-
-        function getrgb() {
-            r = Math.floor(Math.random() * 255);
-            g = Math.floor(Math.random() * 255);
-            b = Math.floor(Math.random() * 255);
-        }   
-        console.log(col);
-
         
         cv.addEventListener('click', function doClick(e){
-            // console.log(e)
+            console.log(e)
 
             ctx.beginPath();
             ctx.arc(e.offsetX,e.offsetY,50,0,2*Math.PI);
-            ctx.fillStyle = 'rgb(0,40,100,.5)'
+            
+            ctx.fillStyle = 'rgb('+r+','+g+','+b+','+a+')'
             ctx.fill();
             ctx.stroke();
         })
 
-        function retornar(r,g,b,a){
-            return 'rgb()'
-        }
+        
 
-        cv.addEventListener('mouseover', function(e){
-            getrgb();
-              
+        cv.addEventListener('mouseover', function getrgb(){
+            r = Math.floor(Math.random() * 255);
+            g = Math.floor(Math.random() * 255);
+            b = Math.floor(Math.random() * 255);
         })
+
+        
         
 
     </script>
