@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<style type="text/css">
+    canvas{
+        background-color: #ffffff;
+    }
+</style>
+<body>
+    
+    <canvas id="myCanvas" width="1000 " height="1000">
+    </canvas>
+    
+    <script type="text/javascript">
+        var cv = document.getElementById("myCanvas");
+        var ctx = cv.getContext("2d");
+        var color = "red";
+        var superX = 0;
+        var superY = 0;
+        var player1 = null;
+        var player2 = null;
+        var direccion = 'right';
+        var score = 0;
+        var speed = 0;
+
+        
+        document.addEventListener('keydown', function(e) {
+            if(e.keyCode == 87 || e.keyCode == 38) {
+                //Arriba
+                player1.y-= 5;
+                if(player1.y < 0)
+                    player1.y = 600;
+                    direccion = 'up';
+            }
+            if(e.keyCode == 83 || e.keyCode == 40) {
+                //Abajo
+                player1.y += 5;
+                if(player1.y > 600)
+                    player1.y = 0;
+                    direccion = 'down';
+            }
+            if(e.keyCode == 65 || e.keyCode == 37) {
+                //Izquierda
+                player1.x -= 5;
+                if(player1.x < 0)
+                    player1.x = 800;
+                    direccion = 'left';
+            }
+            if(e.keyCode == 68 || e.keyCode == 39) {
+                //Derecha
+                player1.x += 5;
+                if(player1.x > 800)
+                    player1.x = 0;
+                    direccion = 'right';
+            }
+
+            paint();
+        });
+        function run() {
+            cv = document.getElementById("myCanvas");
+            ctx = cv.getContext("2d");
+
+            player1 = new Cuadro(superX, superY, 40, 40, "blue");
+            player2 = new Cuadro(superX, superY, 40, 40, "red");
+
+            paint();
+        } 
+
+        function paint() {
+            window.requestAnimationFrame(paint)
+            
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = 'rgb(71, 71, 145)';
+            ctx.fillRect(0, 0, 800, 600);
+            player1.paint(ctx);
+            player2.paint(ctx);            
+        }
+
+        function update(){
+            if(direccion == 'up') {
+                //Arriba
+                player1.y += 10;
+                if(player1.y<0){
+                    player1.y = 500;
+                }
+            }
+            if(direccion == 'down') {
+                //Abajo
+                player1.y -= 10;
+                if(player1.y<0){
+                    player1.y = 0;
+                }
+            }
+            if(direccion == 'left') {
+                //Izquierda
+                player1.x -= 10;
+                if(player1.x<0){
+                    player1.x = 500;
+                }
+            }
+            if(direccion == 'rigth') {
+                //Derecha
+                player1.x += 10;
+                if(player1.x<0){
+                    player1.x = 0;
+                }
+            }
+
+            
+        }
+
+        function Cuadro(x, y, w, h, c) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.c = c;
+
+            this.intersects = function (target) { 
+            if(this.x < target.x + target.w &&
+            this.x + this.w > target.x && 
+            this.y < target.y + target.h && 
+            this.y + this.h > target.y){
+                return true;	
+            } };
+
+            this.paint = function(ctx) {
+                ctx.fillStyle = this.c;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.strokeRect(this.x, this.y, this.w, this.h);
+            }
+        }
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+        window.addEventListener('load', run, false);
+        
+        
+
+    </script>
+</body>
+</html>
