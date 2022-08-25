@@ -13,8 +13,7 @@
 </style>
 <body>
     
-    <canvas id="myCanvas" width="1000 " height="1000">
-    </canvas>
+    <canvas id="myCanvas" width="1000 " height="1000"></canvas>
     
     <script type="text/javascript">
         var cv = document.getElementById("myCanvas");
@@ -24,42 +23,30 @@
         var superY = 0;
         var player1 = null;
         var player2 = null;
-        var direccion = 'right';
+        var direccion = '';
         var score = 0;
-        var speed = 0;
+        var speed = 1;
 
         
         document.addEventListener('keydown', function(e) {
             if(e.keyCode == 87 || e.keyCode == 38) {
                 //Arriba
-                player1.y-= 5;
-                if(player1.y < 0)
-                    player1.y = 600;
-                    direccion = 'up';
+                direccion = 'up';
             }
             if(e.keyCode == 83 || e.keyCode == 40) {
                 //Abajo
-                player1.y += 5;
-                if(player1.y > 600)
-                    player1.y = 0;
-                    direccion = 'down';
+                direccion = 'down';
             }
             if(e.keyCode == 65 || e.keyCode == 37) {
                 //Izquierda
-                player1.x -= 5;
-                if(player1.x < 0)
-                    player1.x = 800;
-                    direccion = 'left';
+                direccion = 'left';
             }
             if(e.keyCode == 68 || e.keyCode == 39) {
                 //Derecha
-                player1.x += 5;
-                if(player1.x > 800)
-                    player1.x = 0;
-                    direccion = 'right';
+                direccion = 'right';
             }
 
-            paint();
+            
         });
         function run() {
             cv = document.getElementById("myCanvas");
@@ -75,41 +62,53 @@
             window.requestAnimationFrame(paint)
             
             ctx.strokeStyle = "black";
-            ctx.fillStyle = '#FCCFC6';
-            ctx.fillRect(0, 0, 800, 600);
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, 1000, 1000);
             player1.paint(ctx);
-            player2.paint(ctx);            
+            player2.paint(ctx);
+            update();            
         }
 
         function update(){
             if(direccion == 'up') {
                 //Arriba
-                player1.y += 10;
+                player1.y -= speed;
                 if(player1.y<0){
-                    player1.y = 500;
+                    player1.y = 1000;
                 }
             }
             if(direccion == 'down') {
                 //Abajo
-                player1.y -= 10;
-                if(player1.y<0){
+                player1.y += speed;
+                if(player1.y>1000){
                     player1.y = 0;
                 }
             }
             if(direccion == 'left') {
                 //Izquierda
-                player1.x -= 10;
+                player1.x -= speed;
                 if(player1.x<0){
-                    player1.x = 500;
+                    player1.x = 1000;
                 }
             }
-            if(direccion == 'rigth') {
+            if(direccion == 'right') {
                 //Derecha
-                player1.x += 10;
-                if(player1.x<0){
+                player1.x += speed;
+                if(player1.x>1000){
                     player1.x = 0;
                 }
             }
+
+            if( player1.intersects(player2)){
+                player2.x = Math.floor (Math.random() * 1001);
+                player2.y = Math.floor (Math.random() * 1001);
+                score +=10;
+                speed +=1;
+                console.log("Hola");
+            }
+            console.log(direccion);
+
+        
 
             
         }
@@ -127,7 +126,7 @@
             this.y < target.y + target.h && 
             this.y + this.h > target.y){
                 return true;	
-            } };
+            }};
 
             this.paint = function(ctx) {
                 ctx.fillStyle = this.c;
