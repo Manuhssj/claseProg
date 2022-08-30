@@ -11,12 +11,33 @@
     <body>
         <!-- Crear contenedor -->
         <div id="contenedor">
-            <h1>Suma: {{resultado}}</h1>
-            <br>
-            <input type="text" v-model="num1" name="">
-            <input type="text" v-model="num2" name="">
+            
+            <ol>
+                <li v-for = "chamaco in chamacos" >
+                    {{chamaco.name}}: <span>{{chamaco.lastname}}</span>
+                </li>
+            </ol>
+            <input type="text" v-model="name" name="">
+            <input type="text" v-model="lastame" name="">
+            <button @click = "save">Click me</button>
 
-            <button @click = "suma">Click me</button>
+
+
+            <hr>
+
+            <!-- <h1>Suma: {{resultado}}</h1> -->
+            <br>
+
+
+
+
+            <hr>
+
+            <h1>Ingrese su edad</h1>
+            <input type="text" v-model="edad">
+            <h1 v-if="edad < 18">No pasar</h1>
+            <h1 v-else="edad >= 18 ">Pase</h1>
+
         </div>
 
 
@@ -28,15 +49,20 @@
             const app = createApp({
             data() {
                 return {
-                num1: 0,
-                num2: 0,
-                resultado:0
+                edad: 0,
+                chamacos: [{name: 'Manuel', lastname: 'H'},{name: 'Gudfeis', lastname: 'movil'},{name: 'Iran', lastname: 'Front'},{name: 'Abdiel', lastname: 'Movil'}],
+                inputName: "",
+                inputLastame: ""
                 }
             },
             methods: {
                 suma(){
-                    this.resultado = parseInt(this.num1)+ parseInt(this.num2);
+                    // this.resultado = parseInt(this.num1)+ parseInt(this.num2);
+                },
+                save(){
+                    this.chamacos.push({name : this.name, lastname : this.lastame})
                 }
+                
             }
             }).mount('#contenedor')
         </script>
