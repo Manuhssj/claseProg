@@ -12,57 +12,72 @@
         <!-- Crear contenedor -->
         <div id="contenedor">
             
-            <ol>
-                <li v-for = "chamaco in chamacos" >
-                    {{chamaco.name}}: <span>{{chamaco.lastname}}</span>
-                </li>
-            </ol>
-            <input type="text" v-model="name" name="">
-            <input type="text" v-model="lastame" name="">
-            <button @click = "save">Click me</button>
+            <form action="">
+                <fieldset>
+                    <legend>
+                        Acceso al panel 
+                    </legend>
+                    <label for="">
+                        Correo electronico
+                    </label>
+                    <input type="text">
+                    
+                    <label for="">
+                        Contraseña
+                    </label>
 
+                    <input type="password">
+                    
 
-
-            <hr>
-
-            <!-- <h1>Suma: {{resultado}}</h1> -->
-            <br>
-
-
-
-
-            <hr>
-
-            <h1>Ingrese su edad</h1>
-            <input type="text" v-model="edad">
-            <h1 v-if="edad < 18">No pasar</h1>
-            <h1 v-else="edad >= 18 ">Pase</h1>
-
+                    <button @click = "login">Login</button>
+                </fieldset>
+            </form>
+            
         </div>
 
-
-        
-        <!--  -->
         <script type="text/javascript">
+
+            const data = null;
+            const error = null;
+
+           
             const { createApp } = Vue
 
             const app = createApp({
             data() {
                 return {
-                edad: 0,
-                chamacos: [{name: 'Manuel', lastname: 'H'},{name: 'Gudfeis', lastname: 'movil'},{name: 'Iran', lastname: 'Front'},{name: 'Abdiel', lastname: 'Movil'}],
-                inputName: "",
-                inputLastame: ""
+                users: null,
+                email: '',
+                password: ''
                 }
             },
             methods: {
-                suma(){
-                    // this.resultado = parseInt(this.num1)+ parseInt(this.num2);
-                },
-                save(){
-                    this.chamacos.push({name : this.name, lastname : this.lastame})
+                login(e){
+                    e.preventDefault();
+                    
+                    var email_user = this.email;
+                    var pass_user = this.password;
+
+                    var access = this.users.map(function(u){
+                        if(email_user === u.email.toLowerCase()){
+                            console.log(0)
+                            if(pass_user === u.password){
+                                console.log(1)
+
+                                alert('Login correcto');
+                                return true;
+                            }
+                        }
+                    })
+                    console.log(access);
                 }
                 
+            },
+            mounted(){
+                fetch('users.json')
+                .then((res) => res.json())
+                .then((json) => ( this.users = json ))
+                .catch((err) => ( console.log(err) ))
             }
             }).mount('#contenedor')
         </script>
