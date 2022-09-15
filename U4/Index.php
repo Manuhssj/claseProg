@@ -9,24 +9,26 @@
 </head>
 <body>
     <div class="container">
+        <form action="">
+            <fieldset>
+    
+                <legend>
+                    Datos de acceso
+                </legend>
+    
+                <label for="">Email</label>
+                <input type="text" name="" id="" placeholder="write here">
+    
+    
+                <label for="">Password</label>
+                <input type="text" placeholder="*****">
+    
+                <button type="submit">
+                    Acceder
+                </button>
+            </fieldset>
 
-        <fieldset>
-
-            <legend>
-                Datos de acceso
-            </legend>
-
-            <label for="">Email</label>
-            <input type="text" name="" id="" placeholder="write here">
-
-
-            <label for="">Password</label>
-            <input type="text" placeholder="*****">
-
-            <button type="submit">
-                Acceder
-            </button>
-        </fieldset>
+        </form>
 
     </div>
 </body>
