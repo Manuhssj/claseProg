@@ -9,22 +9,20 @@
     <title>Login Form</title>
 </head>
 <body class="m-0 vh-100 row justify-content-center align-items-center">
-    
-
-    <form action="post">
+    <form action="auth/authController.php" method="POST">
         <div class="card d-flex container-fluid w-25 ">
             <h1 class="text-center mt-3">Login</h1>
             <div class="form-floating mb-3 mt-4">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+                <label for="username" class="form-label">Username</label>
             </div>
-                <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
-            <a href="products/products.php" type="submit" class="btn btn-primary mt-3 mb-2">Login</a>
+            <button class="btn btn-primary w-100 mt-2 mb-2">Submit</button>
+            <input type="hidden" name="action" value="access">
         </div>
-        
     </form>
 </body>
 </html>
