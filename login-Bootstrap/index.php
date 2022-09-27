@@ -10,17 +10,21 @@
 </head>
 <body class="m-0 vh-100 row justify-content-center align-items-center">
     
-    <div class="card d-flex container-fluid w-25 ">
-        <h1 class="text-center mt-3">Login</h1>
-        <div class="form-floating mb-3 mt-4">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+
+    <form action="post">
+        <div class="card d-flex container-fluid w-25 ">
+            <h1 class="text-center mt-3">Login</h1>
+            <div class="form-floating mb-3 mt-4">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+                <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <a href="products/products.php" type="submit" class="btn btn-primary mt-3 mb-2">Login</a>
         </div>
-            <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
-        <a href="products/products.php" type="submit" class="btn btn-primary mt-3 mb-2">Login</a>
-    </div>
+        
+    </form>
 </body>
 </html>
