@@ -28,7 +28,7 @@ if(isset($_POST["action"])){
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array('email' => 'mdiaz_19@alu.uabcs.mx ','password' => 'd84#6LW63KUpRz'), // Email: mdiaz_19@alu.uabcs.mx   
+                CURLOPT_POSTFIELDS => array('email' => $email,'password' => $password), // Email: mdiaz_19@alu.uabcs.mx   
                                                                                         // Pass: d84#6LW63KUpRz
             ));
 

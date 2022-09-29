@@ -1,3 +1,16 @@
+<?php
+    include_once '..\auth\productController.php';
+    session_start();
+    $productos = new ProductController();
+    $productos = $productos -> chargeProducts($_SESSION["token"]);
+
+
+    // echo('<pre>');
+    // var_dump($productos);
+    // echo('</pre>');
+?>
+
+
 <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2 d-none d-sm-block ">
@@ -34,13 +47,13 @@
                     <div class="col-2"><button class="btn btn-info mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addModal">Añadir producto</button></div>
                 </div>
                 <div class="row">
-                    <?php for($i = 0; $i<12; $i++): ?>
-                      <div class="col-sm-3 col-md-3 mb-5">
+                    <?php foreach($productos as $producto): ?>
+                      <div class="col-sm-3 col-md-3 col-lg-3 mb-5">
                         <div class="card bg-light " style="width: 20rem;">
-                            <img src="../img/img.jpg" class="card-img-top" alt="...">
+                            <img src="<?php echo $producto['cover'] ?>" class="card-img-top" alt="...">
                             <div class="card-body">
-                              <h5 class="card-title ">Card title</h5>
-                              <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <h5 class="card-title "><?php echo "<strong> " . $producto['name'] . " </strong> " ?></h5>
+                              <p class="card-text "> <?php echo $producto['description'] ?> </p>
                                 <div class="row">
 
                                     <div class="col">
@@ -56,7 +69,7 @@
                             </div>
                         </div>
                       </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
