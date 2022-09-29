@@ -1,5 +1,5 @@
 <?php
-    include_once '..\auth\productController.php';
+    include_once '..\auth\ProductController.php';
     session_start();
     $productos = new ProductController();
     $productos = $productos -> chargeProducts($_SESSION["token"]);
@@ -81,13 +81,38 @@
               <h5 class="modal-title" id="exampleModalLabel">Modal Añadir</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            <form action="../auth/ProductController.php">
+
+              <div class="modal-body">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <input type="text" class="form-control" name="name" placeholder="Name product" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Slug</span>
+                  <input type="text" class="form-control" name="slug" placeholder="Slug" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Description</span>
+                  <input type="text" class="form-control" name="description" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Features</span>
+                  <input type="text" class="form-control" name="features" placeholder="Features" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Brand ID</span>
+                  <input type="text" class="form-control" name="Brand ID" placeholder="Brand ID" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+              <input type="hidden" name="action" value="create">
+
+            </form>
           </div>
         </div>
       </div>
