@@ -1,6 +1,25 @@
 <?php
-class ProductController 
-{
+session_start();
+if(isset($_POST["action"])){
+  switch($_POST["action"]){
+    case 'create':
+      $name=strip_tags($_POST['name']);
+      $slug=strip_tags($_POST['slug']);
+      $description=strip_tags($_POST['description']);
+      $features=strip_tags($_POST['features']);
+      $brand_id=strip_tags($_POST['brand_id']);
+
+      $controladorNew = new ProductController();
+
+      $controladorNew -> createProduct($name,$slug,$description,$features,$brand_id);
+      break;
+
+  }
+}
+
+class ProductController {
+
+    
     public function chargeProducts($token){
         $curl = curl_init();
         
@@ -27,6 +46,32 @@ class ProductController
         
         return $response["data"];
 
+    }
+
+
+    public function createProduct($name,$slug,$description,$features,$brand_id){
+
+      $curl = curl_init();
+      $token = $_SESSION["token"];
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/products',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('name' => $name,'slug' => $slug,'description' => $description, 'slug' => $features,'brand_id' => $brand_id,'cover'=> ''),
+        CURLOPT_HTTPHEADER => array(
+          "Authorization: Bearer $token"
+        ),
+      ));
+
+      $response = curl_exec($curl);
+      curl_close($curl);
+      $response= json_decode($response);
+      
     }
 }
 
