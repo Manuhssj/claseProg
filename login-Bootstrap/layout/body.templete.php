@@ -67,7 +67,7 @@
                                         <a href="#" class="btn btn-danger w-100" onclick="remove()">Eliminar</a>
                                     </div>
 
-                                    <a href="detalleProducto.php" class="btn btn-info mt-2" >Detalles</a>
+                                    <a href="detalleProducto.php?slug=<?php echo $producto["slug"]?>" class="btn btn-info mt-2" >Detalles</a>
                                 </div>
                             </div>
                         </div>

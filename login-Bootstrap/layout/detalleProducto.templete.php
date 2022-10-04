@@ -1,3 +1,20 @@
+<?php
+  include "../auth/productController.php";
+  if(isset($_GET['slug'])){
+    $slug=$_GET['slug'];
+    $detalleSlug=new ProductController();
+    $detalle=$detalleSlug->details($slug);
+    $tags = $detalle -> tags;
+    $brand = $detalle -> brand -> name;
+    echo "<pre>";
+    var_dump($brand);
+    echo "</pre>";
+  }
+
+
+?>
+
+
 <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2 d-none d-sm-block ">
@@ -36,25 +53,26 @@
                 <div class="row">
                     
                     <div class="col-sm-3 col-md-3 mb-5">
-                    <div class="card bg-light " style="width: 20rem;">
-                        <img src="../img/img.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title ">Card title</h5>
-                            <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <div class="row">
+                      <div class="card bg-light " style="width: 20rem;">
+                          <img src="<?php echo $detalle -> cover ?>" class="card-img-top" alt="...">
+                          <div class="card-body">
+                              <h4 class="card-title text-center"> <?php echo $brand?></h4>
+                              <h5 class="card-text  text-center"> <?php  echo $detalle -> name  ?> </h5>
+                              <hr>
+                              <div class="row row-cols-3">
+                                <?php foreach($tags as $tag): ?>
+                                <span class="card-text"> <?php  echo $tag -> name ?> </span>
+                                <?php endforeach; ?>
+                              </div>
+                              
+                              <hr>
+                              <p class="card-text "> <?php echo $detalle -> description ?></p>
+                              <div class="row">
 
-                                <div class="col">
-                                    <a href="#" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#editModal">Editar</a>
-                                </div>
-
-                                <div class="col">
-                                    <a href="#" class="btn btn-danger w-100" onclick="remove()">Eliminar</a>
-                                </div>
-
-                                <a href="detalleProducto.php" class="btn btn-info mt-2" >Detalles</a>
-                            </div>
-                        </div>
-                    </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
                     </div>
                     
                 </div>
