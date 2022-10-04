@@ -1,12 +1,17 @@
 <?php
+    
     include_once '..\auth\productController.php';
-    session_start();
-    $productos = new ProductController();
+    $productos = new ProductController;
     $productos = $productos -> chargeProducts($_SESSION["token"]);
 
 
     // echo('<pre>');
     // var_dump($productos);
+    // echo('</pre>');
+    $productosBrands = new ProductController;
+    $brands= $productosBrands -> chargeBrands();
+    // echo('<pre>');
+    // var_dump($brands);
     // echo('</pre>');
 ?>
 
@@ -33,9 +38,6 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                           </ul>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled">Disabled</a>
-                        </li>
                       </ul>
                 </aside>
             </div>
@@ -47,6 +49,7 @@
                     <div class="col-2"><button class="btn btn-info mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addModal">Añadir producto</button></div>
                 </div>
                 <div class="row">
+                
                     <?php foreach($productos as $producto): ?>
                       <div class="col-sm-3 col-md-3 col-lg-3 mb-5">
                         <div class="card bg-light " style="width: 20rem;">
@@ -101,7 +104,13 @@
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">Brand_Id</span>
-                  <input type="text" class="form-control" placeholder="Brand_Id" name="brand_id" aria-label="Username" aria-describedby="basic-addon1">
+                  <select name="brand_id" class="form-select">
+                    <?php foreach($brands as $resBrands): ?>
+
+                    <option value=" <?php echo $resBrands->id?> "> <?php echo $resBrands -> name?> </option>
+                    
+                    <?php endforeach; ?>
+                  </select>
                 </div>
                 <div class="input-group mb-3">
                   <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
