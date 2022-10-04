@@ -82,7 +82,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="../auth/productController.php" method="POST">
+              <form action="../auth/productController.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">Name</span>
                   <input type="text" class="form-control" placeholder="Name" name="name" aria-label="Username" aria-describedby="basic-addon1">
@@ -103,10 +103,9 @@
                   <span class="input-group-text" id="basic-addon1">Brand_Id</span>
                   <input type="text" class="form-control" placeholder="Brand_Id" name="brand_id" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
-                <!-- <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">@</span>
-                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                </div> -->
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" name="uploadedfile" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
