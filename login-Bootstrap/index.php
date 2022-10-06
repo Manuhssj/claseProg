@@ -13,7 +13,7 @@
     <title>Login Form</title>
 </head>
 <body class="m-0 vh-100 row justify-content-center align-items-center">
-    <form action="auth/authController.php" method="POST">
+    <form action=" <?php BASE_PATH?> auth" method="POST">
         <div class="card d-flex container-fluid w-25 ">
             <h1 class="text-center mt-3">Login</h1>
             <div class="form-floating mb-3 mt-4">
@@ -27,7 +27,7 @@
             <button class="btn btn-primary w-100 mt-2 mb-2">Submit</button>
             <input type="hidden" name="action" value="access">
 
-            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+            <input type="hidden" name="global_token" value="<?php $_SESSION['global_token'] ?>">
         </div>
     </form>
 </body>

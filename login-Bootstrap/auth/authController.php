@@ -5,7 +5,7 @@ include_once "config.php";
 
 if(isset($_POST["action"])){
     
-    if(isset($_POST['token']) && ($_POST['token'] == $_SESSION['token']))
+    if(isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token']))
     {
         switch ($_POST["action"]) {
             case 'access':
@@ -50,9 +50,9 @@ if(isset($_POST["action"])){
                 $_SESSION["lastname"] = $response->data->lastname;
                 $_SESSION["avatar"] = $response->data->avatar;
                 $_SESSION["token"] = $response->data->token;
-                header("Location: ../products/products.php");
+                header("Location: " .BASE_PATH."products/products.php");
             }else{
-                header("Location: ../?error=true");
+                header("Location: ".BASE_PATH."?error=true");
             }
 
         }

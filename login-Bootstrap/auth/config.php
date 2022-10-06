@@ -3,11 +3,15 @@
 session_start();
 
 
-if(!isset($_SESSION['token'])){
-    $_SESSION['token'] = md5( uniqid(mt_rand(), true) );
-}else{
-    
+if(!isset($_SESSION['global_token'])){
+    $_SESSION['global_token'] = md5( uniqid(mt_rand(), true) );
 }
+
+
+if(!defined('BASE_PATH')){
+    define('BASE_PATH', 'http://localhost/login-Bootstrap/');
+}
+
 
 
 ?>
