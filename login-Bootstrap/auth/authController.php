@@ -7,19 +7,19 @@ if(isset($_POST["action"])){
     
     if(isset($_POST['token']) && ($_POST['token'] == $_SESSION['token']))
     {
+        switch ($_POST["action"]) {
+            case 'access':
+                
+                $authController = new AuthController();
+                $email = strip_tags($_POST["username"]);
+                $password = strip_tags($_POST["password"]);
+                $authController->login($email, $password);
+                // var_dump($authController);
+                // echo $email;
+                // echo $password;
+                break;
+        }
 
-    }
-    switch ($_POST["action"]) {
-        case 'access':
-            
-            $authController = new AuthController();
-            $email = strip_tags($_POST["username"]);
-            $password = strip_tags($_POST["password"]);
-            $authController->login($email, $password);
-            // var_dump($authController);
-            // echo $email;
-            // echo $password;
-            break;
     }
 }
     Class AuthController{
