@@ -6,9 +6,9 @@
     $detalle=$detalleSlug->details($slug);
     $tags = $detalle -> tags;
     $brand = $detalle -> brand -> name;
-    echo "<pre>";
-    var_dump($brand);
-    echo "</pre>";
+    // echo "<pre>";
+    // var_dump($brand);
+    // echo "</pre>";
   }
 
 

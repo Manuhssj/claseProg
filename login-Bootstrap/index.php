@@ -1,4 +1,7 @@
+<?php
+    include_once "auth/config.php";
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +26,8 @@
             </div>
             <button class="btn btn-primary w-100 mt-2 mb-2">Submit</button>
             <input type="hidden" name="action" value="access">
+
+            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
         </div>
     </form>
 </body>

@@ -1,7 +1,14 @@
 <?php 
 
+include_once "config.php";
+
+
 if(isset($_POST["action"])){
     
+    if(isset($_POST['token']) && ($_POST['token'] == $_SESSION['token']))
+    {
+
+    }
     switch ($_POST["action"]) {
         case 'access':
             
